@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  signInWithEmailAndPassword,
+  createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
@@ -36,7 +36,7 @@ const SignUpForm = () => {
       alert("passwords doesnot match");
     }
     try {
-      const { user } = await signInWithEmailAndPassword(email, password);
+      const { user } = await createAuthUserWithEmailAndPassword(email, password);
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
@@ -89,7 +89,7 @@ const SignUpForm = () => {
             onChange: changeHandler,
           }}
         />
-        <Button type="submit">Sign In</Button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
